@@ -60,7 +60,9 @@ class MyNews extends Component {
       if (!(item[0] == '_id')) {
         // console.log('hello from if 1');
         if (item[1] == true) {
-          let urlReq = `https://newsapi.org/v2/top-headlines?category=${item[0]}&apiKey=${this.state.REACT_APP_API_KEY}&language=en`;
+          // https://gnews.io/api/v4/top-headlines?token=d8903f3430caadb55e96b9f0ac6f9696&topic=sports&lang=en
+          // let urlReq = `https://newsapi.org/v2/top-headlines?category=${item[0]}&apiKey=${this.state.REACT_APP_API_KEY}&language=en`;
+          let urlReq = `https://gnews.io/api/v4/top-headlines?topic=${item[0]}&token=${this.state.REACT_APP_API_KEY}&lang=en`;
           let catResp = await axios.get(urlReq);
 
           allRespArr.push({ name: item[0], data: catResp.data.articles });
@@ -124,7 +126,8 @@ class MyNews extends Component {
       if (!(item[0] == '_id')) {
         // console.log('hello from if 1');
         if (item[1] == true) {
-          let urlReq = `https://newsapi.org/v2/top-headlines?category=${item[0]}&apiKey=${this.state.REACT_APP_API_KEY}&language=en`;
+          // let urlReq = `https://newsapi.org/v2/top-headlines?category=${item[0]}&apiKey=${this.state.REACT_APP_API_KEY}&language=en`;
+          let urlReq = `https://gnews.io/api/v4/top-headlines?topic=${item[0]}&token=${this.state.REACT_APP_API_KEY}&lang=en`;
           let catResp = await axios.get(urlReq);
 
           allRespArr.push({ name: item[0], data: catResp.data.articles });
@@ -164,7 +167,7 @@ class MyNews extends Component {
               index: idx,
               categName: categName,
               name: value.source.name,
-              urlToImage: value.urlToImage,
+              urlToImage: value.image,
               title: value.title,
               description: value.description,
               url: value.url,
@@ -179,7 +182,7 @@ class MyNews extends Component {
     console.log('this.state.name', this.state.name);
     //   const chosenArticleData={
     //    name: this.state.name,
-    //    urlToImage: this.state.urlToImage,
+    //    image: this.state.image,
     //    title: this.state.title,
     //    description: this.state.description,
     //    url: this.state.url,
@@ -361,7 +364,7 @@ class MyNews extends Component {
                           <div class='meta'>
                             <div class='photo'>
                               {' '}
-                              <img src={value.urlToImage} alt='' />
+                              <img src={value.image} alt='' />
                             </div>
                             <ul class='details'>
                               <li class='author'>{value.source.name}</li>
@@ -389,7 +392,7 @@ class MyNews extends Component {
                       {/* <Card className="text-center">
       <Card.Header>{value.source.name}</Card.Header>
       <Card.Body>
-          <Card.Img variant="top" src={value.urlToImage} style={{ width: '20rem', height: '20rem', margin: 'auto' }} />
+          <Card.Img variant="top" src={value.image} style={{ width: '20rem', height: '20rem', margin: 'auto' }} />
           <Card.Title>{value.title}</Card.Title>
           <Card.Text style={{ overflow: 'auto', height: '3rem' }}>
           {value.description}
@@ -406,7 +409,7 @@ class MyNews extends Component {
                           <div class='meta'>
                             <div class='photo'>
                               {' '}
-                              <img src={value.urlToImage} alt='' />
+                              <img src={value.image} alt='' />
                             </div>
                             <ul class='details'>
                               <li class='author'>{value.source.name}</li>
